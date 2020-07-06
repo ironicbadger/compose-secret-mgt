@@ -6,6 +6,28 @@ docker_users:
 # ironicbadger.docker_compose_generator
 appdata_path: /home/alex/appdata
 containers:
+  - service_name: gitea
+    container_name: gitea
+    image: gitea/gitea
+    active: true
+    #depends_on:
+    #  - mysql
+    volumes:
+      - "{{ appdata_path }}/gitea:/data"
+    ports:
+      - "{{ secret_listen_port_gitea }}:{{ secret_listen_port_gitea }}"
+      - "{{ secret_ssh_port_gitea }}:{{ secret_ssh_port_gitea }}"
+    include_global_env_vars: false
+    environment:
+      - "USER_UID={{ main_uid }}"
+      - "USER_GID={{ main_gid }}"
+      - "ROOT_URL=https://{{ secret_subdomain_git }}.{{ secret_domain_full }}"
+      - "SSH_DOMAIN={{ secret_subdomain_git }}.{{ secret_domain_full }}"
+      - "APP_NAME={{ secret_subdomain_git }}.{{ secret_domain_full }}"
+      - "SSH_PORT={{ secret_ssh_port_gitea }}"
+      - "DISABLE_REGISTRATION=true"
+      - "REQUIRE_SIGNIN_VIEW=true"
+    restart: unless-stopped
   - service_name: tiddlywiki
     container_name: tiddlywiki
     image: mazzolino/tiddlywiki
