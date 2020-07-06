@@ -1,0 +1,13 @@
+APP_NAME = {{ subdomain_git }}.{{ domain_full }}
+RUN_MODE = prod
+RUN_USER = git
+
+[repository]
+ROOT = {{ data_root_path }}/git/repositories
+
+[server]
+APP_DATA_PATH    = {{ data_root_path }}/gitea
+SSH_DOMAIN       = {{ subdomain_git }}.{{ domain_full }}
+HTTP_PORT        = {{ listen_port_gitea }}
+ROOT_URL         = https://{{ subdomain_git }}.{{ domain_full }}/
+DOMAIN           = {{ subdomain_git }}.{{ domain_full }}

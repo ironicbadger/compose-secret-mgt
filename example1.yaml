@@ -1,0 +1,13 @@
+---
+
+- hosts: server
+  vars:
+    - subdomain_git: git 
+    - domain_full: domain.com
+    - data_root_path: /data
+    - listen_port_gitea: 3000
+  tasks:
+    - name: template test
+      template:
+        src: example1.ini.j2
+        dest: example1.ini
