@@ -5,7 +5,7 @@ encrypt:
 	ansible-vault encrypt --vault-password-file .vault-password vars/vault.yaml
 
 reqs:
-	ansible-galaxy install -r roles/requirements.yaml
+	ansible-galaxy install -r requirements.yaml
 
 server:
 	ansible-playbook compose.yaml -b --ask-become-pass --limit server
