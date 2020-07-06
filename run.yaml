@@ -1,8 +1,32 @@
 ---
 
 - hosts: server
+  vars:
+    - data_root_path: /data
   vars_files:
     - 'vars/vault.yaml'
+  tasks:
+    - name: create config directories
+      file:
+        path: "~/appdata/{{ item }}"
+        state: directory
+        recurse: yes
+      loop:
+        - gitea
+        - tiddlywiki
+        - smokeping
+      tags: compose
+    - name: template example gitea config file
+      template:
+        src: example.ini.j2
+        dest: "{{ appdata_path }}/gitea/gitea.ini"
+      tags: compose
+    - name: install packages
+      package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - tree
   roles:
     - role: geerlingguy.docker
     - role: ironicbadger.ansible_role_bash_aliases
