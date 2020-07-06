@@ -10,8 +10,8 @@ containers:
     container_name: tiddlywiki
     image: mazzolino/tiddlywiki
     active: true    
-    # ports:
-    #   - 8080:8080
+    ports:
+      - 8080:8080
     volumes:
       - "{{ appdata_path }}/tiddlywiki:/var/lib/tiddlywiki" 
     restart: unless-stopped
@@ -19,6 +19,8 @@ containers:
     container_name: smokeping
     image: linuxserver/smokeping
     active: true
+    ports:
+      - 8081:80
     volumes:
       - "{{ appdata_path }}/smokeping/config:/config"
       - "{{ appdata_path }}/smokeping/data:/data"

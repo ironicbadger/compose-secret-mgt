@@ -11,4 +11,4 @@ server:
 	ansible-playbook run.yaml -b --ask-become-pass --limit server
 
 servercomp:
-	ansible-playbook run.yaml --tags compose --limit server
+	ansible-playbook run.yaml --tags compose --vault-password-file .vault-password --limit server
