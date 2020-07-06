@@ -8,7 +8,7 @@ reqs:
 	ansible-galaxy install -r requirements.yaml
 
 server:
-	ansible-playbook compose.yaml -b --ask-become-pass --limit server
+	ansible-playbook run.yaml -b --ask-become-pass --limit server
 
 servercomp:
-	ansible-playbook compose.yaml --tags compose --limit server
+	ansible-playbook run.yaml --tags compose --limit server
