@@ -1,0 +1,10 @@
+---
+
+- hosts: server
+  vars_files:
+    - 'vars/vault.yaml'
+  roles:
+    - role: geerlingguy.docker
+    - role: ironicbadger.ansible_role_bash_aliases
+    - role: ironicbadger.ansible_role_docker_compose_generator
+      tags: compose

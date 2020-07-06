@@ -1,0 +1,27 @@
+---
+# geerlingguy.docker
+docker_users:
+  - alex
+
+# ironicbadger.docker_compose_generator
+appdata_path: /home/alex/appdata
+containers:
+  - service_name: tiddlywiki
+    container_name: tiddlywiki
+    image: mazzolino/tiddlywiki
+    active: true    
+    # ports:
+    #   - 8080:8080
+    volumes:
+      - "{{ appdata_path }}/tiddlywiki:/var/lib/tiddlywiki" 
+    restart: unless-stopped
+  - service_name: smokeping
+    container_name: smokeping
+    image: linuxserver/smokeping
+    active: true
+    volumes:
+      - "{{ appdata_path }}/smokeping/config:/config"
+      - "{{ appdata_path }}/smokeping/data:/data"
+    include_global_env_vars: true
+    mem_limit: 128m
+    restart: unless-stopped

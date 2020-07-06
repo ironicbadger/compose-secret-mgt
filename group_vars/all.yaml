@@ -1,0 +1,19 @@
+---
+main_uid: 1000
+main_gid: "{{ main_uid }}"
+global_env_vars:
+  - "PUID={{ main_uid }}"
+  - "PGID={{ main_gid }}"
+  - "TZ={{ ntp_timezone }}"
+
+# geerlingguy.ntp
+ntp_timezone: "America/New_York"
+
+# ferrarimarco.bash-aliases
+bash_aliases:
+  - { alias: "dtail", command: "docker logs -tf --tail='50' " }
+  - { alias: "dstop", command: "docker stop `docker ps -aq`" }
+  - { alias: "drm", command: "docker rm `docker ps -aq`" }
+  - { alias: "dcp", command: "docker-compose -f ~/docker-compose.yml " }
+  - { alias: "dprune", command: "docker image prune" }
+  - { alias: "dprunesys", command: "docker system prune --all" }
