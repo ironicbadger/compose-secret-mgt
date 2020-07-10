@@ -1,2 +1,10 @@
-[server]
+[server] # if managing one host these two lines are all you need
 192.168.1.50
+
+[another-group]
+192.168.1.51
+192.168.1.52
+
+[prod:children] # creates a prod host group containing other host groups
+server
+another-group
