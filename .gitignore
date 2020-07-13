@@ -102,4 +102,4 @@ crash.log
 # End of https://www.gitignore.io/api/terraform
 galaxy_roles
 .vault-password
-vault.yaml
+#vault.yaml
